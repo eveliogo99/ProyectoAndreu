@@ -5,7 +5,7 @@ if (isset($_POST)) {
     $username = (string)$_POST['username'];
     
     $result = $connexion->query(
-        'SELECT * FROM users WHERE username = "'.strtolower($username).'"'
+        'SELECT * FROM empreses WHERE username = "'.strtolower($username).'"'
     );
     
     if ($result->num_rows > 0) {

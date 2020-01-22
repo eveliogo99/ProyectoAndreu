@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-01-2020 a las 16:46:38
+-- Tiempo de generación: 22-01-2020 a las 23:05:25
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `empreses` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   `username` varchar(20) DEFAULT NULL,
   `pass` varchar(20) DEFAULT NULL,
   `nom` varchar(20) DEFAULT NULL,
@@ -38,6 +38,13 @@ CREATE TABLE `empreses` (
   `Municipi` varchar(20) DEFAULT NULL,
   `Descripció Empresa` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `empreses`
+--
+
+INSERT INTO `empreses` (`id`, `username`, `pass`, `nom`, `cognoms`, `NIF`, `Municipi`, `Descripció Empresa`) VALUES
+(1, 'evelio', '123', 'Evelio', 'GonzalezOrtega', '42272647', 'Barcelona', 'C Frederic Soler 12');
 
 -- --------------------------------------------------------
 
@@ -1039,7 +1046,7 @@ INSERT INTO `provincias` (`id`, `slug`, `provincia`, `comunidad_id`, `capital_id
 --
 
 CREATE TABLE `users` (
-  `id` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
   `username` varchar(20) DEFAULT NULL,
   `pass` varchar(20) DEFAULT NULL,
   `nom` varchar(20) DEFAULT NULL,
@@ -1051,8 +1058,22 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `pass`, `nom`, `cognoms`, `DNI`, `Municipi`, `Estudis/Títols`, `Experiencia Laboral`) VALUES
+(1, 'evelio', '123', 'Evelio', 'Gonzalez', '42272647G', 'Barcelona', 'Gradosuperior', '2 años practicas'),
+(20, 'evelio', '123', 'Evelio', 'GonzalezOrtega', '42272647G', 'Barcelona', 'Gradosuperior', 'Ninguna');
+
+--
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `empreses`
+--
+ALTER TABLE `empreses`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `municipios`
@@ -1071,8 +1092,20 @@ ALTER TABLE `provincias`
   ADD KEY `FK_provincias` (`comunidad_id`);
 
 --
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `empreses`
+--
+ALTER TABLE `empreses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `municipios`
@@ -1085,6 +1118,12 @@ ALTER TABLE `municipios`
 --
 ALTER TABLE `provincias`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

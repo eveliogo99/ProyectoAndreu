@@ -11,12 +11,13 @@
 		<input type="submit" value="Login" name="env"></input>
 	</form>
 <?php
-$user = $_GET['login'];
-$pass = $_GET['password'];
+session_start();
 $enlace = mysqli_connect("127.0.0.1:3306", "root", "", "borsadetreball");
 //Login para usuario
 
 if(isset($_GET['env'])){
+	$user = $_GET['login'];
+	$pass = $_GET['password'];
 if (!$enlace) {
     echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
     echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
@@ -27,14 +28,17 @@ if (!$enlace) {
 	if(mysqli_num_rows($resultU)==0){
 		echo("No s´ha trobat l´usuari"); 
 	}else { 
-		echo("user was found"); 
-		   
-		 }
+		header('Location: PerfilUsuario.php');
+		$_SESSION['usuario'] = $user;
+		exit;
+		}
 	}
 }
 
 //Login para empresa
 if(isset($_GET['env'])){
+	$user = $_GET['login'];
+	$pass = $_GET['password'];
 if (!$enlace) {
     echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
     echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
@@ -45,8 +49,8 @@ if (!$enlace) {
 	if(mysqli_num_rows($resultE)==0){
 		echo("No s´ha trobat l´empresa"); 
 	}else { 
-		echo("user was found"); 
-		   
+		header('Location: PerfilUsuario.php');
+		exit; 
 		 }
 	}
 }

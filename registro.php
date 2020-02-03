@@ -21,7 +21,7 @@ $(document).ready(function() {
         });
     }); 
 
-    $('input[name=nomE]').on('blur', function(){
+    $('input[name=usuE]').on('blur', function(){
 
     	$('#result-empresa').html('<img src="images/loader.gif" />').fadeOut(1000);
 
@@ -70,21 +70,17 @@ $(document).ready(function() {
 <div id="empresa" style="display: none">
 	<form action="" method="POST">
 		<p>Nom de l´usuari:</p>
-		<input type="text" name="nomE"></input>
+		<input type="text" name="usuE"></input>
 		<div id="result-empresa"></div>
 		<p>Contraseña:</p>
 		<input type="password" name="passE"></input>
 		<p>Nombre:</p>
-		<input type="text" name="nombresE"></input>
-		<p>Apellidos:</p>
-		<input type="text" name="apellidosE"></input>
+		<input type="text" name="nomE"></input>
 		<p>NFI:</p>
 		<input type="text" name="nfiE"></input>
 		<!-- PONER CAMPO MUNICIPIOS PROVINVIAS -->
-		<p>Titols:</p>
-		<input type="text" name="titolsE"></input>
 		<p>Descripció empresa:</p>
-		<input type="text" name="experienciaE"></input>
+		<input type="text" name="descripcioE"></input>
 		<br>
 		<input type="submit" value="Login" name="env2"></input>
 	</form>
@@ -124,7 +120,7 @@ if(isset($_POST['env'])){
 		if(mysqli_affected_rows($enlace)>0){
 			echo("Usuario Registrado correctamente como users"); 
 		}else { 
-			echo("user was found"); 
+			echo("usuario encontrado porfavor pon otro username"); 
 			   
 			 }
 		}
@@ -135,21 +131,19 @@ if(isset($_POST['env2'])){
 	$usuE = $_POST['usuE'];
 	$passE = $_POST['passE'];
 	$nomE = $_POST['nomE'];
-	$apellidosE = $_POST['apellidosE'];
 	$nfiE = $_POST['nfiE'];
-	$titolsE = $_POST['titolsE'];
-	$experienciaE = $_POST['experienciaE'];
+	$descripcioE = $_POST['descripcioE'];
 	if (!$enlace) {
 	    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
 	    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
 	    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
 	    exit;
 	}else{
-		$resultE = mysqli_query($enlace,"INSERT INTO `empreses` (`id`, `username`, `pass`, `nom`, `cognoms`, `NIF`, `Municipi`, `Descripció Empresa`) VALUES (NULL, '$usuE', '$passE', '$nomE', '$apellidosE', '$nfiE', '$titolsE', '$experienciaE')");
+		$resultE = mysqli_query($enlace,"INSERT INTO `empreses` (`id`, `username`, `pass`, `nom_empresa`, `NIF`, `Municipi`, `descripcio`) VALUES (NULL, '$usuE', '$passE', '$nomE', '$nfiE', 2, '$descripcioE')");
 		if(mysqli_affected_rows($enlace)>0){
 			echo("Usuari ".$usuE." registrat correctament en empresas"); 
 		}else { 
-			echo("user was found"); 
+			echo("usuario encontrado porfavor pon otro username"); 
 			   
 			 }
 		}

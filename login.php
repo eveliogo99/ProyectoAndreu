@@ -49,7 +49,8 @@ if (!$enlace) {
 	if(mysqli_num_rows($resultE)==0){
 		echo("No s´ha trobat l´empresa"); 
 	}else { 
-		header('Location: PerfilUsuario.php');
+		header('Location: perfilEmpresa.php');
+		$_SESSION['empresa'] = $user;
 		exit; 
 		 }
 	}

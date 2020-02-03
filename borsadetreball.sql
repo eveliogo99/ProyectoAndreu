@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-01-2020 a las 23:05:25
+-- Tiempo de generación: 03-02-2020 a las 17:26:27
 -- Versión del servidor: 10.4.11-MariaDB
--- Versión de PHP: 7.4.1
+-- Versión de PHP: 7.2.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -29,22 +29,22 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `empreses` (
-  `id` int(11) NOT NULL,
-  `username` varchar(20) DEFAULT NULL,
-  `pass` varchar(20) DEFAULT NULL,
-  `nom` varchar(20) DEFAULT NULL,
-  `cognoms` varchar(20) DEFAULT NULL,
-  `NIF` varchar(20) DEFAULT NULL,
-  `Municipi` varchar(20) DEFAULT NULL,
-  `Descripció Empresa` varchar(500) DEFAULT NULL
+  `id` int(20) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `nom_empresa` varchar(200) NOT NULL,
+  `NIF` varchar(15) NOT NULL,
+  `Municipi` int(20) NOT NULL,
+  `descripcio` varchar(100) NOT NULL,
+  `pass` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `empreses`
 --
 
-INSERT INTO `empreses` (`id`, `username`, `pass`, `nom`, `cognoms`, `NIF`, `Municipi`, `Descripció Empresa`) VALUES
-(1, 'evelio', '123', 'Evelio', 'GonzalezOrtega', '42272647', 'Barcelona', 'C Frederic Soler 12');
+INSERT INTO `empreses` (`id`, `username`, `nom_empresa`, `NIF`, `Municipi`, `descripcio`, `pass`) VALUES
+(1, 'eveliocomp', 'EvelioSA', '214434', 2, 'dfwas,edljkm', '123'),
+(3, 'evelio', 'Evelio SA', '15161465', 2, 'ewhfwhqeuhiquwehfuiowuih', '123');
 
 -- --------------------------------------------------------
 
@@ -1062,8 +1062,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `pass`, `nom`, `cognoms`, `DNI`, `Municipi`, `Estudis/Títols`, `Experiencia Laboral`) VALUES
-(1, 'evelio', '123', 'Evelio', 'Gonzalez', '42272647G', 'Barcelona', 'Gradosuperior', '2 años practicas'),
-(20, 'evelio', '123', 'Evelio', 'GonzalezOrtega', '42272647G', 'Barcelona', 'Gradosuperior', 'Ninguna');
+(1, 'evelio1', '123', 'Evelio', 'Gonzalez Ortega', '4227647G', 'Barcelona', 'Grado Superior', 'F');
 
 --
 -- Índices para tablas volcadas
@@ -1073,7 +1072,8 @@ INSERT INTO `users` (`id`, `username`, `pass`, `nom`, `cognoms`, `DNI`, `Municip
 -- Indices de la tabla `empreses`
 --
 ALTER TABLE `empreses`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- Indices de la tabla `municipios`
@@ -1095,7 +1095,8 @@ ALTER TABLE `provincias`
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -1105,7 +1106,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `empreses`
 --
 ALTER TABLE `empreses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `municipios`

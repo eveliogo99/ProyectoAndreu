@@ -11,23 +11,32 @@ $fila = mysqli_fetch_array($resultU,MYSQLI_BOTH);
 <head>
 	<title></title>
 </head>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js">
+</script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		var username = $("#username");
+		username.dblclick(function(){
+			username.html("");
+			username.html("<input type='textarea' name='user' value='<?php echo $fila['username'] ?>'>");
+		});
+
+		var nom_empresa = $("#nom");
+		nom_empresa.dblclick(function(){
+			nom_empresa.html("");
+			nom_empresa.html("<input type='textarea' name='nom_empresa' value='<?php echo $fila['nom_empresa'] ?>'>");
+		});
+	});
+</script>
 <body>
+	<form method="POST">
 	<table border=1>
 		<tr>
 			<td>
-				Id
+				LoginEmpresa
 			</td>
 			<td>
-				Username
-			</td>
-			<td>
-				Pass
-			</td>
-			<td>
-				nom
-			</td>
-			<td>
-				cognoms
+				Nom Empresa
 			</td>
 			<td>
 				NIF
@@ -38,35 +47,32 @@ $fila = mysqli_fetch_array($resultU,MYSQLI_BOTH);
 			<td>
 				Descripció Empresa
 			</td>
+			<td>
+				Contrasenya
+			</td>
 		</tr>
 		<tr>
-			<td>
-				<input type="text" name="" value='<?php echo $fila['id'] ?>'>
-
+			<td id ='username'>
+				<?php echo $fila['username'] ?>
 			</td>
-			<td>
-				<input type="text" name="" value='<?php echo $fila['username'] ?>'>
-			</td>
-			<td>
-				<input type="text" name="" value='<?php echo $fila['pass'] ?>'>
-			</td>
-			<td>
-				<input type="text" name="" value='<?php echo $fila['nom'] ?>'>
-			</td>
-			<td>
-				<input type="text" name="" value='<?php echo $fila['cognoms'] ?>'>
-			</td>
-			<td>
+			<td id='nom'>
+				<?php echo $fila['nom_empresa'] ?>
+			</td>			
+			<td id='nif'>
 				<input type="text" name="" value='<?php echo $fila['NIF'] ?>'>
 			</td>
-			<td>
+			<td id='municipi'>
 				<input type="text" name="" value='<?php echo $fila['Municipi'] ?>'>
 			</td>
-			<td>
-				<input type="password" name="" value='<?php echo $fila['Descripció Empresa'] ?>'>
+			<td id='descripcio'>
+				<input type="text" name="" value='<?php echo $fila['descripcio'] ?>'>
+			</td>
+			<td id='pass'>
+				<input type="password" name="" value='<?php echo $fila['pass'] ?>'>
 			</td>
 		</tr>
 	</table>
+	</form>
 	<a href="registroOfertas.php">Registra una oferta</a>
 </body>
 </html>

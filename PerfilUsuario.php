@@ -133,6 +133,8 @@ $(document).ready(function () {
 		
 	</table>
 	</form>
+
+		<a href="script/logout.php">Tanca la sessio</a>
 </body>
 
 

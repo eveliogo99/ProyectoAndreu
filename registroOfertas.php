@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+<?php
+session_start();
+echo ($_SESSION['empresa']);
+$empresa=$_SESSION['empresa'];
+?>
 <body>
 	<form action="" method="POST">
 		Registra una oferta :
@@ -16,6 +21,7 @@
 		<br/>
 		<input type="submit" value="Login" name="env"></input>
 	</form>
+	<input type="button" class="button_active" onclick="location.href='script/logout.php';" value="logout" />
 <?php
 if(isset($_POST['env']) && !empty($_POST['env'])) {
 $titol = $_POST['titol'];
@@ -84,7 +90,7 @@ function validaTitol($titol){
 	    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
 	    exit;
 	}else{
-		$resultU = mysqli_query($enlace,"INSERT INTO ofertes_laborals (id,titol , descripcio , requisits , sou , brut ,data_publi) VALUES (NULL,'$titol' ,'$descripcio','$requisits', $sou,$brut,current_timestamp())");
+		$resultU = mysqli_query($enlace,"INSERT INTO ofertes_laborals (id, id_empresa, titol , descripcio , requisits , sou , brut ,data_publi) VALUES (NULL,(SELECT id from empreses where username = '$empresa'),'$titol' ,'$descripcio','$requisits', $sou,$brut,current_timestamp())");
 		if(mysqli_affected_rows($resultU)<0){
 			echo("Error al introduir les dades"); 
 		}else { 

@@ -1,7 +1,7 @@
 <?php
 
 
-$enlace = mysqli_connect("127.0.0.1:3307", "jordi", "patata", "borsadetreball");
+$enlace = mysqli_connect("127.0.0.1:3306", "root", "", "borsadetreball");
 
 if (!$enlace) {
     echo "Error: No se pudo conectar a MySQL.2" . PHP_EOL;

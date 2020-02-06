@@ -81,7 +81,25 @@ $(document).ready(function() {
 		<!-- PONER CAMPO MUNICIPIOS PROVINVIAS -->
 		<p>Descripció empresa:</p>
 		<input type="text" name="descripcioE"></input>
-		<br>
+		<p>Selecciona un municipi</p>
+		<select  onchange="showMunicipi(this.value)">
+            <option>
+                
+            </option>
+            <?php while($row = mysqli_fetch_array($result)):;?>
+
+            <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+
+            <?php endwhile;?>
+
+        </select>
+       <?php 
+           echo $_POST['taskOption'];
+           ?> 
+        <div id="secondSelect">
+           
+        </div>
+
 		<input type="submit" value="Login" name="env2"></input>
 	</form>
 </div>
@@ -101,6 +119,10 @@ $(document).ready(function() {
 <?php
 $enlace = mysqli_connect("127.0.0.1:3306", "root", "", "borsadetreball");
 //Login para usuario
+$result = mysqli_query($enlace,"SELECT id,provincia from provincias");
+if(mysqli_num_rows($result)==0) echo("not records");
+
+mysqli_close($enlace);
 
 if(isset($_POST['env'])){
 	$usuU =$_POST['usuU'];
@@ -152,4 +174,25 @@ mysqli_close($enlace);
 ?>
 
 </body>
+<!--JORDIIIIIIIIIIIIIIIIIIIIII-->
+<script>
+function showMunicipi(str) {
+  var xhttp;    
+
+  if (str == "") {
+    document.getElementById("secondSelect").innerHTML = "";
+    return;
+}
+
+
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("secondSelect").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "SelectMunicipi.php?q="+str, true);
+  xhttp.send();
+}
+</script>
 </html>

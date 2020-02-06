@@ -1,7 +1,7 @@
 <?php
 
 
-$enlace = mysqli_connect("127.0.0.1:3307", "jordi", "patata", "borsadetreball");
+$enlace = mysqli_connect("127.0.0.1:3306", "root", "", "borsadetreball");
 
 if (!$enlace) {
     echo "Error: No se pudo conectar a MySQL.2" . PHP_EOL;
@@ -67,8 +67,8 @@ function showMunicipi(str) {
     <body>
 
         <!--Method One-->
-
-        <select onchange="showMunicipi(this.value)">
+        <form action="" method='POST'>
+        <select  onchange="showMunicipi(this.value)">
             <option>
                 
             </option>
@@ -80,8 +80,11 @@ function showMunicipi(str) {
 
         </select>
         
+        </form>
+       <?php 
+           echo $_POST['taskOption'];?> 
         <div id="secondSelect">
-            
+           
         </div>
 
 

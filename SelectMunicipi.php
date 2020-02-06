@@ -44,7 +44,7 @@ mysqli_close($enlace);
     <body>
 
         <!--Method One-->
-        <form action="registro.php" method='POST'>
+        <form action="" method='POST'>
             <select name="taskOption" id= 'municipi'>
 
                 <?php while($row = mysqli_fetch_array($result)):;?>
@@ -53,7 +53,7 @@ mysqli_close($enlace);
 
                 <?php endwhile;?>
             </select>
-         <input type="submit" name="">>
+         <input type="submit" name="env2">
         </form>
         <script type="text/javascript">
             function hola(){

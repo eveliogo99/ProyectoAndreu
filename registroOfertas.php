@@ -4,7 +4,11 @@
 session_start();
 echo ($_SESSION['empresa']);
 $empresa=$_SESSION['empresa'];
+
 ?>
+
+
+
 <body>
 	<form action="" method="POST">
 		Registra una oferta :
@@ -19,8 +23,12 @@ $empresa=$_SESSION['empresa'];
 		<p>Brut:</p>
 		<input type="text" name="brut"required></input>
 		<br/>
+		
 		<input type="submit" value="Login" name="env"></input>
 	</form>
+
+
+
 	<input type="button" class="button_active" onclick="location.href='script/logout.php';" value="logout" />
 <?php
 if(isset($_POST['env']) && !empty($_POST['env'])) {
@@ -32,58 +40,7 @@ $brut = $_POST['brut'];
 $env = $_POST['env'];
 $errors = "";
 
-function validaTitol($titol){
-    if(trim($titol) == ''){
-       return false;
-    }else{
-       return true;
-    }
- }
- function validaDescripcio($descripcio){
-    if(trim($descripcio)== ''){
-       return false;
-    }else{
-       return true;
-    }
- }
- function validaRequisits($requisits){
-    if(trim($requisits) == ''){
-       return false;
-    }else{
-       return true;
-    }
- }
- function validaSou($sou){
-    if(trim($sou)== ''){
-       return false;
-    }else{
-       return true;
-    }
- }
- function validaBrut($brut){
-    if(trim($brut)== ''){
-       return false;
-    }else{
-       return true;
-    }
- }
-//Por cada campo vacio se suma 1 a errors
- if (!validaTitol($titol)){
- 	$errors + 1;
- }
-  if (!validaRequisits($requisits)){
- 	$errors + 1;
- }
-  if (!validaDescripcio($descripcio)){
- 	$errors + 1;
- }if (!validaSou($sou)){
- 	$errors + 1;
- }
-  if (!validaBrut($brut)){
- 	$errors + 1;
- }
- $enlace = mysqli_connect("127.0.0.1:3306", "root", "", "borsadetreball");
-//Si errors=0 quiere decir que ningun campo esta vacio y se realizara el insert
+$enlace = mysqli_connect("127.0.0.1:3306", "root", "", "borsadetreball");
 	if (!$enlace) {
 	    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
 	    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
@@ -97,5 +54,7 @@ function validaTitol($titol){
 			echo("Oferta afegida"); 
 			 }
 		}
+
+
 }
 ?>

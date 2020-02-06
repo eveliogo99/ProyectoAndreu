@@ -40,6 +40,53 @@ $(document).ready(function() {
 
 });    
 </script>
+
+<?php
+
+/*
+$enlace1 = mysqli_connect("127.0.0.1:3306", "root", "", "borsadetreball");
+
+if (!$enlace1) {
+    echo "Error: No se pudo conectar a MySQL.2" . PHP_EOL;
+    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+    exit;
+}
+
+$result = mysqli_query($enlace1,"SELECT id,provincia from provincias");
+if(mysqli_num_rows($result)==0) echo("not records");
+
+
+
+mysqli_close($enlace1);
+*/
+
+?>
+
+<script>
+
+function showMunicipi(str) {
+  var xhttp;    
+
+  if (str == "") {
+    document.getElementById("secondSelect").innerHTML = "";
+    return;
+}
+
+
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("secondSelect").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "SelectMunicipi.php?q="+str, true);
+  xhttp.send();
+}
+</script>
+
+
+
 	Selecciona el tipus de registre:<br>
 	<input type="radio" name="tipoLogin" onclick="mostraUsu()"> Usuario<br>
   <input type="radio" name="tipoLogin"onclick="mostraEmpresa()"> Empresa<br>
@@ -81,8 +128,8 @@ $(document).ready(function() {
 		<!-- PONER CAMPO MUNICIPIOS PROVINVIAS -->
 		<p>Descripció empresa:</p>
 		<input type="text" name="descripcioE"></input>
-		<p>Selecciona un municipi</p>
-		<select  onchange="showMunicipi(this.value)">
+		<!--<p>Seleccciona Municipi:</p>
+		 <select  onchange="showMunicipi(this.value)">
             <option>
                 
             </option>
@@ -93,15 +140,20 @@ $(document).ready(function() {
             <?php endwhile;?>
 
         </select>
-       <?php 
-           echo $_POST['taskOption'];
-           ?> 
         <div id="secondSelect">
            
-        </div>
-
+        </div>-->
 		<input type="submit" value="Login" name="env2"></input>
 	</form>
+
+	<!--Jordi -->
+       <?php 
+           echo $_POST['taskOption'];?> 
+        
+
+		<!--Fin Jordi -->
+
+
 </div>
 <p>El resultat:</p>
 <script>
@@ -122,7 +174,6 @@ $enlace = mysqli_connect("127.0.0.1:3306", "root", "", "borsadetreball");
 $result = mysqli_query($enlace,"SELECT id,provincia from provincias");
 if(mysqli_num_rows($result)==0) echo("not records");
 
-mysqli_close($enlace);
 
 if(isset($_POST['env'])){
 	$usuU =$_POST['usuU'];
@@ -169,8 +220,9 @@ if(isset($_POST['env2'])){
 			   
 			 }
 		}
+		mysqli_close($enlace);
 }
-mysqli_close($enlace);
+
 ?>
 
 </body>

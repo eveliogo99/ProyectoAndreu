@@ -36,7 +36,7 @@ function showOferta(str) {
       document.getElementById("ofertes").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "showOfertas.php", true);
+  xhttp.open("GET", "ShowOfertes.php", true);
   xhttp.send();
 }
 
@@ -47,7 +47,7 @@ function showOferta(str) {
       document.getElementById("ofertes").innerHTML = this.responseText;
     }
   };
-  xhttp.open("GET", "showOfertas.php?q="+str, true);
+  xhttp.open("GET", "ShowOfertes.php?q="+str, true);
   xhttp.send();
 }
 </script>

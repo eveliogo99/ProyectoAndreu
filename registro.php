@@ -43,7 +43,7 @@ $(document).ready(function() {
 
 <?php
 
-/*
+
 $enlace1 = mysqli_connect("127.0.0.1:3306", "root", "", "borsadetreball");
 
 if (!$enlace1) {
@@ -59,8 +59,6 @@ if(mysqli_num_rows($result)==0) echo("not records");
 
 
 mysqli_close($enlace1);
-*/
-
 ?>
 
 <script>
@@ -94,7 +92,7 @@ function showMunicipi(str) {
 <div id="usuario" style="display: none">
 	<form action="" method="POST">
 		<p>Nom de l´usuari:</p>
-		<input type="text" name="nomU"></input>
+		<input type="text" name="usuU"></input>
 		<div id="result-username"></div>
 		<p>Contraseña:</p>
 		<input type="password" name="passU"></input>
@@ -109,6 +107,21 @@ function showMunicipi(str) {
 		<input type="text" name="titolsU"></input>
 		<p>Experiencia laboral:</p>
 		<input type="text" name="experienciaU"></input>
+		<p>Seleccciona Municipi:</p>
+		 <select  onchange="showMunicipi(this.value)">
+            <option>
+                
+            </option>
+            <?php while($row = mysqli_fetch_array($result)):;?>
+
+            <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+
+            <?php endwhile;?>
+
+        </select>
+        <div id="secondSelect">
+           
+        </div>
 		<br>
 		<input type="submit" value="Login" name="env"></input>
 	</form>
@@ -128,7 +141,7 @@ function showMunicipi(str) {
 		<!-- PONER CAMPO MUNICIPIOS PROVINVIAS -->
 		<p>Descripció empresa:</p>
 		<input type="text" name="descripcioE"></input>
-		<!--<p>Seleccciona Municipi:</p>
+		<p>Seleccciona Municipi:</p>
 		 <select  onchange="showMunicipi(this.value)">
             <option>
                 
@@ -142,13 +155,11 @@ function showMunicipi(str) {
         </select>
         <div id="secondSelect">
            
-        </div>-->
+        </div>
 		<input type="submit" value="Login" name="env2"></input>
 	</form>
 
 	<!--Jordi -->
-       <?php 
-           echo $_POST['taskOption'];?> 
         
 
 		<!--Fin Jordi -->
@@ -176,6 +187,7 @@ if(mysqli_num_rows($result)==0) echo("not records");
 
 
 if(isset($_POST['env'])){
+	$municipi= $_POST['taskOption'];
 	$usuU =$_POST['usuU'];
 	$passU = $_POST['passU'];
 	$nomU = $_POST['nomU'];
@@ -189,7 +201,7 @@ if(isset($_POST['env'])){
 	    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
 	    exit;
 	}else{
-		$resultU = mysqli_query($enlace,"INSERT INTO `users` (`id`, `username`, `pass`, `nom`, `cognoms`, `DNI`, `Municipi`, `Estudis/Títols`, `Experiencia Laboral`) VALUES (NULL, '$usuU', '$passU', '$nomU', '$apellidosU', '$dniU', 'Barcelona', '$titolsU', '$experienciaU');");
+		$resultU = mysqli_query($enlace,"INSERT INTO `users` (`id`, `username`, `pass`, `nom`, `cognoms`, `DNI`, `Municipi`, `Estudis/Títols`, `Experiencia Laboral`) VALUES (NULL, '$usuU', '$passU', '$nomU', '$apellidosU', '$dniU', $municipi, '$titolsU', '$experienciaU');");
 		if(mysqli_affected_rows($enlace)>0){
 			echo("Usuario Registrado correctamente como users"); 
 		}else { 
@@ -201,6 +213,7 @@ if(isset($_POST['env'])){
 
 //Login para empresa
 if(isset($_POST['env2'])){
+	$municipi= $_POST['taskOption'];
 	$usuE = $_POST['usuE'];
 	$passE = $_POST['passE'];
 	$nomE = $_POST['nomE'];
@@ -212,7 +225,7 @@ if(isset($_POST['env2'])){
 	    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
 	    exit;
 	}else{
-		$resultE = mysqli_query($enlace,"INSERT INTO `empreses` (`id`, `username`, `pass`, `nom_empresa`, `NIF`, `Municipi`, `descripcio`) VALUES (NULL, '$usuE', '$passE', '$nomE', '$nfiE', 2, '$descripcioE')");
+		$resultE = mysqli_query($enlace,"INSERT INTO `empreses` (`id`, `username`, `pass`, `nom_empresa`, `NIF`, `Municipi`, `descripcio`) VALUES (NULL, '$usuE', '$passE', '$nomE', '$nfiE', $municipi, '$descripcioE')");
 		if(mysqli_affected_rows($enlace)>0){
 			echo("Usuari ".$usuE." registrat correctament en empresas"); 
 		}else { 

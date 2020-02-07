@@ -3,7 +3,7 @@ require('config.php');
 session_start();
 echo ($_SESSION['usuario']);
 $user=$_SESSION['usuario'];
-$resultU = mysqli_query($connexion,"SELECT * FROM users WHERE username='$user'");
+$resultU = mysqli_query($connexion,"SELECT *, (SELECT municipio from municipios WHERE id = Municipi ) AS Municipio FROM users WHERE username='$user'");
 $fila = mysqli_fetch_array($resultU,MYSQLI_BOTH);
 echo ("- Nombre: ".$fila['nom']."<br/> ");
 
@@ -72,7 +72,7 @@ $(document).ready(function () {
 				Username
 			</td>
 			<td>
-				Nombre
+				Nombre de Pila 
 			</td>
 			<td>
 				Apellido
@@ -122,7 +122,7 @@ $(document).ready(function () {
 			</td>
 			<td id="municipi">
 				<input type='hidden' name='municipi' value='<?php echo $fila['Municipi'] ?>'>
-				<?php echo $fila['Municipi'] ?>
+				<?php echo $fila['Municipio'] ?>
 			</td>
 			<td id="contra">
 				<input type='hidden' name='pass' value='<?php echo $fila['pass'] ?>'>
@@ -134,7 +134,8 @@ $(document).ready(function () {
 	</table>
 	</form>
 
-		<a href="script/logout.php">Tanca la sessio</a>
+		<p><a href="script/logout.php">Tanca la sessio</a></p>
+		<p><a href="index.php">Home</a></p>
 </body>
 
 

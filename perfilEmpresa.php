@@ -107,7 +107,8 @@ $fila = mysqli_fetch_array($resultU,MYSQLI_BOTH);
 		</tr>
 	</table>
 	</form>
-	<a href="registroOfertas.php">Registra una oferta</a>
-	<a href="script/logout.php">Tanca la sessio</a>
+	<p><a href="registroOfertas.php">Registra una oferta</a></p>
+	<p><a href="script/logout.php">Tanca la sessio</a></p>
+	<p><a href="index.php">Home</a></p>
 </body>
 </html>

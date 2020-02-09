@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-02-2020 a las 19:02:49
+-- Tiempo de generación: 09-02-2020 a las 01:54:31
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.2.26
 
@@ -43,9 +43,15 @@ CREATE TABLE `empreses` (
 --
 
 INSERT INTO `empreses` (`id`, `username`, `nom_empresa`, `NIF`, `Municipi`, `descripcio`, `pass`) VALUES
-(1, 'eveliocomp', 'EvelioSA1', '214434edwdw', 3, 'kfjafiejafe', '1234'),
+(1, 'eveliocomp', 'EvelioSA1', '214434edwdw', 872, 'kfjafiejafe', '1234'),
 (3, 'evelio', 'Evelio SA', '15161465', 2, 'ewhfwhqeuhiquwehfuiowuih', '123'),
-(4, 'david', 'EvelioSA', '214434', 2, 'dewdwed', '123');
+(4, 'david', 'EvelioSA', '214434', 2, 'dewdwed', '123'),
+(5, 'EVELIO1', 'EVELIOSA', '3242143', 2, 'FREFEFEFREF', '123'),
+(7, 'evelio123', 'dewedw', '214434', 2, 'dewdwed', '123'),
+(8, 'evelio_david', 'EvelioSA', '214434', 2, 'dewdwed', '123'),
+(10, 'eveliod', 'EvelioSA', '214434', 2469, 'dewdwed', '123'),
+(11, 'eveliogonzalez099@gm', '', '', 862, '', 'Judas123'),
+(12, 'davidsa', 'DavidSA1', '485454S', 870, 'edwwdede', '1234');
 
 -- --------------------------------------------------------
 
@@ -1067,7 +1073,12 @@ INSERT INTO `ofertes_laborals` (`id`, `id_empresa`, `titol`, `descripcio`, `requ
 (31, 0, '2', '2', '3', 3, 3, '2020-01-31 14:12:43'),
 (32, 0, '2', '2', '32', 3, 3, '2020-01-31 14:12:54'),
 (33, 0, '2', '2', '32', 3, 3, '2020-01-31 14:13:44'),
-(34, 0, 's', 's', 's', 3, 3, '2020-01-31 14:13:51');
+(34, 0, 's', 's', 's', 3, 3, '2020-01-31 14:13:51'),
+(35, 2, 'knkldne', 'nfrefrjlereljr', 'kferklerfklrekf', 20, 6, '2020-02-05 18:15:50'),
+(36, 4, 'Carnicero', 'Muy profesional', 'Ninguno', 200, 9000, '2020-02-05 18:18:33'),
+(37, 10, 'Carnicero', 'Muy profesional', 'Ninguno', 200, 8000, '2020-02-05 18:18:41'),
+(38, 1, 'Carnicero', 'ree', 'Ninguno', 200, 500, '2020-02-05 18:20:46'),
+(39, 1, 'Videojugador', 'Somos una buena empresa', 'Cap', 200, 300, '2020-02-08 19:19:20');
 
 -- --------------------------------------------------------
 
@@ -1116,7 +1127,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `pass`, `nom`, `cognoms`, `DNI`, `Municipi`, `Estudis/Títols`, `Experiencia Laboral`) VALUES
-(1, 'evelio1', '123', 'Evelio', 'Gonzalez Ortega', '4227647G', 0, 'Grado Superior', 'F');
+(1, 'evelio1', '123', 'Evelio', 'Gonzalez Ortega', '4227647G', 0, 'Grado Superior', 'F'),
+(21, 'evelio', '123', 'evelio', 'Gonzalez', '432432234G', 877, 'eywriueyr', 'woirqeuouqri');
 
 --
 -- Índices para tablas volcadas
@@ -1166,7 +1178,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `empreses`
 --
 ALTER TABLE `empreses`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `municipios`
@@ -1178,7 +1190,7 @@ ALTER TABLE `municipios`
 -- AUTO_INCREMENT de la tabla `ofertes_laborals`
 --
 ALTER TABLE `ofertes_laborals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `provincias`
@@ -1190,7 +1202,7 @@ ALTER TABLE `provincias`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

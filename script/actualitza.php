@@ -10,7 +10,7 @@
 	$cognoms=$_GET['cognoms'];
 	$estudis=$_GET['estudis'];
 	$experiencia=$_GET['experiencia'];
-	$municipi=$_GET['municipi'];
+	$municipi=$_GET['taskOption'];
 	$passw=$_GET['pass'];
 	$sql = "UPDATE users SET username='$username', DNI = '$dni', nom = '$nom', cognoms = '$cognoms', `Estudis/Títols` = '$estudis', `Experiencia Laboral`='$experiencia', municipi='$municipi', pass = '$passw'  WHERE username = '$user'";
 	 if ($connexion->query($sql) === TRUE) {

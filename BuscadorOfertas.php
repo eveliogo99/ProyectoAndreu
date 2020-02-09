@@ -16,7 +16,7 @@
 
         <!--Method One-->
 
-        <input onchange="showOferta(this.value)">
+        <input id ="buscador" onchange="showOferta(this.value)">
         <div id="ofertes"></div>
 
 
@@ -24,8 +24,17 @@
 
 </html>
 
-
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <script>
+$(document).ready(function () {
+
+$('input#buscador')
+  .keypress(function (event) {
+    if (this.value.length === 20) {
+      return false;
+    }
+  });
+}); 
 function showOferta(str) {
   var xhttp;    
 

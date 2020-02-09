@@ -56,7 +56,8 @@ if (!$enlace1) {
 $result = mysqli_query($enlace1,"SELECT id,provincia from provincias");
 if(mysqli_num_rows($result)==0) echo("not records");
 
-
+$resultE = mysqli_query($enlace1,"SELECT id,provincia from provincias");
+if(mysqli_num_rows($result)==0) echo("not records");
 
 mysqli_close($enlace1);
 ?>
@@ -76,6 +77,24 @@ function showMunicipi(str) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("secondSelect").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "SelectMunicipi.php?q="+str, true);
+  xhttp.send();
+}
+function showMunicipiE(str) {
+  var xhttp;    
+
+  if (str == "") {
+    document.getElementById("secondSelectE").innerHTML = "";
+    return;
+}
+
+
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("secondSelectE").innerHTML = this.responseText;
     }
   };
   xhttp.open("GET", "SelectMunicipi.php?q="+str, true);
@@ -142,28 +161,24 @@ function showMunicipi(str) {
 		<p>Descripció empresa:</p>
 		<input type="text" name="descripcioE"></input>
 		<p>Seleccciona Municipi:</p>
-		 <select  onchange="showMunicipi(this.value)">
+		 <select  onchange="showMunicipiE(this.value)">
             <option>
                 
             </option>
-            <?php while($row = mysqli_fetch_array($result)):;?>
+            <?php while($row = mysqli_fetch_array($resultE)):;?>
 
             <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
 
             <?php endwhile;?>
 
         </select>
-        <div id="secondSelect">
+        <div id="secondSelectE">
            
         </div>
 		<input type="submit" value="Login" name="env2"></input>
 	</form>
 
-	<!--Jordi -->
-        
-
-		<!--Fin Jordi -->
-
+	
 
 </div>
 <p>El resultat:</p>
@@ -184,7 +199,8 @@ $enlace = mysqli_connect("127.0.0.1:3306", "root", "", "borsadetreball");
 //Login para usuario
 $result = mysqli_query($enlace,"SELECT id,provincia from provincias");
 if(mysqli_num_rows($result)==0) echo("not records");
-
+$resultE = mysqli_query($enlace,"SELECT id,provincia from provincias");
+if(mysqli_num_rows($result)==0) echo("not records");
 
 if(isset($_POST['env'])){
 	$municipi= $_POST['taskOption'];
@@ -254,6 +270,25 @@ function showMunicipi(str) {
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       document.getElementById("secondSelect").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "SelectMunicipi.php?q="+str, true);
+  xhttp.send();
+}
+
+function showMunicipiE(str) {
+  var xhttp;    
+
+  if (str == "") {
+    document.getElementById("secondSelectE").innerHTML = "";
+    return;
+}
+
+
+  xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("secondSelectE").innerHTML = this.responseText;
     }
   };
   xhttp.open("GET", "SelectMunicipi.php?q="+str, true);

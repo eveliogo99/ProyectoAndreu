@@ -6,16 +6,58 @@ $user=$_SESSION['usuario'];
 $resultU = mysqli_query($connexion,"SELECT *, (SELECT municipio from municipios WHERE id = Municipi ) AS Municipio FROM users WHERE username='$user'");
 $fila = mysqli_fetch_array($resultU,MYSQLI_BOTH);
 echo ("- Nombre: ".$fila['nom']."<br/> ");
-
+mysqli_close($connexion);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
 </head>
+<?php
+
+
+$enlace = mysqli_connect("127.0.0.1:3306", "root", "", "borsadetreball");
+
+if (!$enlace) {
+    echo "Error: No se pudo conectar a MySQL.2" . PHP_EOL;
+    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+    exit;
+}
+
+$result = mysqli_query($enlace,"SELECT id,provincia from provincias");
+if(mysqli_num_rows($result)==0) echo("not records");
+
+
+
+mysqli_close($enlace);
+
+
+?>
+
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+function showMunicipi(str) {
+	  var xhttp;    
+
+	  if (str == "") {
+	    document.getElementById("secondSelect").innerHTML = "";
+	    return;
+	}
+
+
+	  xhttp = new XMLHttpRequest();
+	  xhttp.onreadystatechange = function() {
+	    if (this.readyState == 4 && this.status == 200) {
+	      document.getElementById("secondSelect").innerHTML = this.responseText;
+	    }
+	  };
+	  xhttp.open("GET", "SelectMunicipi.php?q="+str, true);
+	  xhttp.send();
+}
+	
 $(document).ready(function () {
+
 	var username = $("#username");
 	username.dblclick(function(){
 		username.html("");
@@ -35,6 +77,7 @@ $(document).ready(function () {
 	});
 
 	var dni = $("#dni");
+	
 	dni.dblclick(function(){
 		dni.html("<input type='textarea' name='dni' value='<?php echo $fila['DNI'] ?>'>");
 	});
@@ -48,14 +91,22 @@ $(document).ready(function () {
 	experiencia.dblclick(function(){
 		experiencia.html("<input type='textarea' name='experiencia' value='<?php echo $fila['Experiencia Laboral'] ?>'>");
 	});
+
+
+	//MUNICIPIO
+	$("#municipios").hide();
 	var municipi = $("#municipi");
 	municipi.dblclick(function(){
-		municipi.html("<input type='textarea' name='municipi' value='<?php echo $fila['Municipi'] ?>'>");
-	});
+		$("#municipio").html("");
+		$("#municipios").show();		
+		$("#presiona").html("Presiona Intro para Confirmar los cambios");
+		});
 	var contra = $("#contra");
 	contra.dblclick(function(){
 		contra.html("<input type='password' name='pass' value='<?php echo $fila['pass'] ?>'>");
 	});
+
+
 
 	$(document).on('keypress',function(e) {
 	    if(e.which == 13) {
@@ -121,8 +172,27 @@ $(document).ready(function () {
 				<?php echo $fila['Experiencia Laboral'] ?>
 			</td>
 			<td id="municipi">
-				<input type='hidden' name='municipi' value='<?php echo $fila['Municipi'] ?>'>
-				<?php echo $fila['Municipio'] ?>
+				<div id ="municipios">
+					<select  onchange="showMunicipi(this.value)">
+			            <option>
+			                
+			            </option>
+			            <?php while($row = mysqli_fetch_array($result)):;?>
+
+			            <option value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
+
+			            <?php endwhile;?>
+
+			        </select>
+			        <div id="secondSelect">
+           
+        			</div>
+				</div>
+				
+				<div id ="municipio">
+					<input  type='hidden' name='taskOption' value='<?php echo $fila['Municipi'] ?>'>
+					<?php echo $fila['Municipio'] ?>
+				</div>
 			</td>
 			<td id="contra">
 				<input type='hidden' name='pass' value='<?php echo $fila['pass'] ?>'>

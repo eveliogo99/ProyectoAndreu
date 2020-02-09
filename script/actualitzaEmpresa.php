@@ -9,7 +9,7 @@
 	$nom_empresa=$_POST['nom_empresa'];
 	$descripcio=$_POST['descripcio'];
 	$pass=$_POST['pass'];
-	$municipi=$_POST['municipi'];
+	$municipi=$_POST['taskOption'];
 	$passw=$_POST['pass'];
 	$sql = "UPDATE empreses SET username='$username', NIF = '$nif', nom_empresa = '$nom_empresa', descripcio = '$descripcio', `pass` = '$pass', `Municipi`='$municipi'  WHERE username = '$username'";
 	 if ($connexion->query($sql) === TRUE) {

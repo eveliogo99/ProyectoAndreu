@@ -53,14 +53,7 @@ mysqli_close($enlace);
 
                 <?php endwhile;?>
             </select>
-         <input type="submit" name="env2">
         </form>
-        <script type="text/javascript">
-            function hola(){
-            var x = document.getElementById("municipi").value;
-            console.log(x);    
-        }
-        </script>
         <!-- Method Two -->
 
     </body>
